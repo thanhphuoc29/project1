@@ -1,4 +1,4 @@
-﻿USE QuanLyBanHang
+USE QuanLyBanHang
 GO
 
 --them du lieu
@@ -42,7 +42,25 @@ VALUES
 ('NV010',N'Nguyễn Bảo Ngọc', 35 , N'Hà Đông', N'Nữ','CV01')
 GO
 
-
+INSERT INTO dbo.NhanViensdt
+VALUES
+('NV001','0356144246'),
+('NV002','0865746872'),
+('NV003','0981541242'),
+('NV004','0893458522'),
+('NV005','0393548554'),
+('NV006','0954856254'),
+('NV007','0899584556'),
+('NV008','0373548699'),
+('NV009','0918456432'),
+('NV010','0865977642')
+GO
+INSERT INTO dbo.ChucVu
+VALUES
+('CV01',N'Nhân viên bán hàng'),
+('CV02',N'Nhân viên kiểm kho'),
+('CV03',N'Nhân viên nhập hàng')
+GO
 INSERT INTO dbo.NhaCC
 VALUES
 ('CC001',N'Công Ty TNHH Hà Long',N'Thanh Xuân - Hà Đông'),
@@ -71,41 +89,89 @@ VALUES
 ('CN009','CC006','Chi Nhánh số 9','Cầu Giấy - Hà Nội'),
 ('CN010','CC004','Chi Nhánh số 10','Phủ Lý - Hà Nam')
 GO
-
 INSERT INTO dbo.SanPham
 (
     id_sp,
+	id_hd,
     ten,
-    hang,
     gia,
-    loai,
-    id_hd
+	hang
 )
 VALUES
-(   '',  -- id_sp - char(10)
-    N'', -- ten - nvarchar(50)
-    N'', -- hang - nvarchar(50)
-    0.0, -- gia - real
-    N'', -- loai - nvarchar(50)
-    ''   -- id_hd - char(10)
-    )
+('TD001', 'HD01', N'Sữa chua', 50000 , 'Vinamilk'),
+('TD002', 'HD01', N'Kem', 50000 , N'Tràng tiền'),
+('GD003', 'HD02', N'Nồi cơm điện', 200000 , 'CucCu'),
+('TD004', 'HD01', N'Mì tôm', 5000, N'Hảo hảo'),
+('GD005', 'HD03', N'Quạt điện', 300000 , N'Toshiba'),
+('TD006', 'HD04', N'Nước ngọt', 20000 , 'Cocacola'),
+('GD007', 'HD05', N'Ấm siêu tốc', 90000 , 'Sanyo'),
+('GD008', 'HD05', N'Nồi chiên không dầu', 500000 , N'Panasonic'),
+('TD009', 'HD06', N'Xì dầu', 20000 , 'Vinacol'),
+('TD010', 'HD07', N'Nước lau nhà', 30000 , 'Sunlight')
+GO
+INSERT INTO dbo.HoaDon
+(
+    id_hd,
+	id_nv,
+	tong_sp,
+    tong_tien,
+	ngay
+)
+VALUES
+('HD01','NV001',3,105000,'2022-02-12'),
+('HD02','NV002',1,200000,'2022-02-12'),
+('HD03','NV002',1,300000,'2022-02-12'),
+('HD04','NV003',1,20000,'2022-02-12'),
+('HD05','NV004',2,590000,'2022-02-12'),
+('HD06','NV005',1,20000,'2022-02-12'),
+('HD07','NV005',1,30000,'2022-02-12')
+GO
 INSERT INTO dbo.NhapHang
 (
     id_nhap,
     id_cn,
-    id_sp,
-    id_nv,
+	id_sp,
+	id_nv,
     so_luong
 )
 VALUES
-('NH001','CN01','SP001','NV01','100'),
-('NH002','CN02','SP001','NV02','90'),
-('NH003','CN03','SP001','NV03','66'),
-('NH004','CN04','SP001','NV04','78'),
-('NH005','CN05','SP001','NV05','125'),
-('NH006','CN06','SP001','NV06','15'),
-('NH007','CN07','SP001','NV07','70'),
-('NH008','CN08','SP001','NV08','95'),
-('NH009','CN09','SP001','NV09','65'),
-('NH010','CN10','SP001','NV10','25')
-
+('NH001','CN001','TD001','NV001','100'),
+('NH002','CN002','TD002','NV002','90'),
+('NH003','CN003','GD003','NV003','66'),
+('NH004','CN004','TD004','NV004','78'),
+('NH005','CN005','TD006','NV005','125'),
+('NH006','CN006','GD005','NV006','15'),
+('NH007','CN007','GD007','NV007','70'),
+('NH008','CN008','TD009','NV008','95'),
+('NH009','CN009','GD008','NV009','65'),
+('NH010','CN010','TD010','NV010','25')
+GO
+INSERT INTO dbo.HangTieuDung
+VALUES
+('TD001',N'Đồ đóng hộp','2025-02-12'),
+('TD002',N'Đồ ăn vặt','2022-04-25'),
+('TD004',N'Đồ khô','2022-12-22'),
+('TD006',N'Đồ uống','2022-11-03'),
+('TD009',N'Gia vị','2025-02-28'),
+('TD010',N'Đồ sinh hoạt','2027-07-15')
+GO
+INSERT INTO dbo.DoGiaDung
+VALUES
+('GD003',N'Đồ gia dụng phòng bếp'),
+('GD005',N'Đồ gia dụng phòng khách'),
+('GD007',N'Đồ gia dụng phòng bếp'),
+('GD008',N'Đồ gia dụng phòng bếp')
+GO
+INSERT INTO dbo.Mua
+VALUES
+('KH01','TD001',1),
+('KH01','TD002',1),
+('KH01','TD004',1),
+('KH02','TD006',1),
+('KH05','TD009',1),
+('KH06','TD010',1),
+('KH07','GD003',1),
+('KH08','GD005',1),
+('KH09','GD007',1),
+('KH09','GD008',1)
+GO
