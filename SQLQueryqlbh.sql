@@ -1,4 +1,4 @@
-﻿CREATE DATABASE QuanLyBanHang
+CREATE DATABASE QuanLyBanHang
 GO
 
 USE QuanLyBanHang
@@ -23,7 +23,6 @@ CREATE TABLE SanPham(
 	ten NVARCHAR(50),
 	hang NVARCHAR(50),
 	gia REAL,
-	loai NVARCHAR(50)
 )
 GO
 CREATE TABLE HangTieuDung(
@@ -58,22 +57,17 @@ CREATE TABLE NhanViensdt(
 GO
 CREATE TABLE HoaDon(
 	id_hd CHAR(10) PRIMARY KEY,
-	ten_sp NVARCHAR(50),
 	id_nv CHAR(10) REFERENCES dbo.NhanVien(id_nv),
 	ngay DATE,
-	so_luong_sp INT
+	tong_sp INT
 	tong_tien REAL,
 )
 GO
 CREATE TABLE ChucVu(
 	id_cv CHAR(10) PRIMARY KEY,
-	id_nv CHAR(10) REFERENCES dbo.NhanVien(id_nv),
 	ten NVARCHAR(50)
 )
--- chinh sua bang 
-ALTER TABLE dbo.ChucVu
-DROP FK__ChucVu__id_nv__46E78A0C
-
+DELETE FROM dbo.ChucVu
 ALTER TABLE dbo.NhanVien
 ADD id_cv CHAR(10) REFERENCES dbo.ChucVu(id_cv)
 -- xong
