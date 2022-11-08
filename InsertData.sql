@@ -93,8 +93,8 @@ INSERT INTO dbo.NhapHang
 (
     id_nhap,
     id_cn,
-	id_sp,
-	id_nv,
+    id_sp,
+    id_nv,
     so_luong
 )
 VALUES
