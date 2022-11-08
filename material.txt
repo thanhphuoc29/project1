@@ -1,0 +1,8 @@
+diagram:
+https://app.diagrams.net/#G15b-KOLr9ix6mVj5EzPC7w5eEO4IuswAo
+relational schema:
+https://app.diagrams.net/#G1lysBpn97D3qRbFFNCSmm9O-JajFTY9Dw
+Insert data:
+https://docs.google.com/document/d/1R7wHR8rEJfBdGUmyofEHMSl7nk1TlCys/edit?usp=sharing&ouid=108790848203509949942&rtpof=true&sd=true
+write a report:
+https://docs.google.com/document/d/1UZnWPZ8xuGX_uoUYSlWSXkI_AQ1PM7VW/edit?usp=sharing&ouid=108790848203509949942&rtpof=true&sd=true
