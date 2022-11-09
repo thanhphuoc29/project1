@@ -1,7 +1,7 @@
-CREATE DATABASE QuanLyBanHang
+CREATE DATABASE test2
 GO
 
-USE QuanLyBanHang
+USE test2
 GO
 
 CREATE TABLE KhachHang(
@@ -15,6 +15,33 @@ GO
 CREATE TABLE KhachHangSdt(
 	id_KH CHAR(10) REFERENCES KhachHang(id_KH),
 	sdt CHAR(20) PRIMARY KEY
+)
+GO
+CREATE TABLE ChucVu(
+	id_cv CHAR(10) PRIMARY KEY,
+	ten NVARCHAR(50)
+)
+GO
+CREATE TABLE NhanVien(
+	id_nv CHAR(10) PRIMARY KEY,
+	ten NVARCHAR(50),
+	tuoi INT,
+	dia_chi NVARCHAR(50),
+	gioi_tinh NVARCHAR(10),
+	id_cv CHAR(10) REFERENCES ChucVu(id_cv)
+)
+GO
+CREATE TABLE NhanViensdt(
+	id_nv CHAR(10) REFERENCES NhanVien(id_nv),
+	sdt CHAR(20) PRIMARY key
+)
+GO
+CREATE TABLE HoaDon(
+	id_hd CHAR(10) PRIMARY KEY,
+	id_nv CHAR(10) REFERENCES dbo.NhanVien(id_nv),
+	ngay DATE,
+	tong_sp INT,
+	tong_tien REAL
 )
 GO
 CREATE TABLE SanPham(
@@ -42,36 +69,6 @@ CREATE TABLE Mua(
 	so_luong INT
 )
 GO
-CREATE TABLE NhanVien(
-	id_nv CHAR(10) PRIMARY KEY,
-	ten NVARCHAR(50),
-	tuoi INT,
-	dia_chi NVARCHAR(50),
-	gioi_tinh NVARCHAR(10)
-)
-GO
-CREATE TABLE NhanViensdt(
-	id_nv CHAR(10) REFERENCES NhanVien(id_nv),
-	sdt CHAR(20) PRIMARY key
-)
-GO
-CREATE TABLE HoaDon(
-	id_hd CHAR(10) PRIMARY KEY,
-	id_nv CHAR(10) REFERENCES dbo.NhanVien(id_nv),
-	ngay DATE,
-	tong_sp INT
-	tong_tien REAL,
-)
-GO
-CREATE TABLE ChucVu(
-	id_cv CHAR(10) PRIMARY KEY,
-	ten NVARCHAR(50)
-)
-DELETE FROM dbo.ChucVu
-ALTER TABLE dbo.NhanVien
-ADD id_cv CHAR(10) REFERENCES dbo.ChucVu(id_cv)
--- xong
-GO 
 CREATE TABLE NhaCC(
 	id_nhacc CHAR(10) PRIMARY KEY,
 	ten NVARCHAR(50),
