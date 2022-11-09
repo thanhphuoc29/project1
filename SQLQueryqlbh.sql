@@ -1,7 +1,7 @@
-CREATE DATABASE test2
+CREATE DATABASE QuanLyBanHang
 GO
 
-USE test2
+USE QuanLyBanHang
 GO
 
 CREATE TABLE KhachHang(
