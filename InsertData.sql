@@ -28,6 +28,12 @@ VALUES
 ('KH09','091351535'),
 ('KH10','064513155')
 GO
+INSERT INTO dbo.ChucVu
+VALUES
+('CV01',N'Nhân viên bán hàng'),
+('CV02',N'Nhân viên kiểm kho'),
+('CV03',N'Nhân viên nhập hàng')
+GO
 INSERT INTO dbo.NhanVien
 VALUES
 ('NV001',N'Nguyễn Việt Hoa',25,N'Phùng khoang',N'Nữ','CV01'),
@@ -55,39 +61,22 @@ VALUES
 ('NV009','0918456432'),
 ('NV010','0865977642')
 GO
-INSERT INTO dbo.ChucVu
+INSERT INTO dbo.HoaDon
+(
+    id_hd,
+	id_nv,
+	tong_sp,
+    tong_tien,
+	ngay
+)
 VALUES
-('CV01',N'Nhân viên bán hàng'),
-('CV02',N'Nhân viên kiểm kho'),
-('CV03',N'Nhân viên nhập hàng')
-GO
-INSERT INTO dbo.NhaCC
-VALUES
-('CC001',N'Công Ty TNHH Hà Long',N'Thanh Xuân - Hà Đông'),
-('CC002',N'Công Ty TNHH Hoàng Minh',N'Dương Nội - Hà Đông'),
-('CC003',N'Công Ty Kinh Doanh Việt Dương',N'Hoàng Mai - Hà Nội'),
-('CC004',N'Công Ty SX Thiên Long',N'Phủ Lý - Hà Nam'),
-('CC005',N'Công Ty TNHH Long Thành',N'Hai Bà Trưng - Hà Nội'),
-('CC006',N'Công Ty TNHH Bắc Việt',N'Cầu Giấy - Hà Nội'),
-('CC007',N'Công Ty Thực Phẩm Hương Ly',N' Từ Liêm - Hà Nội'),
-('CC008',N'Công Ty Thực Phẩm CP',N'Hoài Đức - Hà Nội'),
-('CC009',N'Công Ty TNHH Việt Đức',N'Thanh Xuân- Hà Đông'),
-('CC010',N'Công Ty TNHH Quang Long',N'Kiến An - Hải Phòng')
-GO
-
-
-INSERT INTO dbo.ChiNhanh
-VALUES
-('CN001','CC001','Chi Nhánh số 1','Thanh Xuân - Hà Đông'),
-('CN002','CC001','Chi Nhánh số 2','Yên Xá - Hà Đông'),
-('CN003','CC003','Chi Nhánh số 3','Hoàng Mai - Hà Nội'),
-('CN004','CC002','Chi Nhánh số 4','Dương Nội - Hà Đông'),
-('CN005','CC005','Chi Nhánh số 5','Hai Bà Trưng - Hà Nội'),
-('CN006','CC008','Chi Nhánh số 6','Dương Nội - Hà Đông'),
-('CN007','CC010','Chi Nhánh số 7','Kiến An - Hải Phòng'),
-('CN008','CC009','Chi Nhánh số 8','Thanh Xuân - Hà Đông'),
-('CN009','CC006','Chi Nhánh số 9','Cầu Giấy - Hà Nội'),
-('CN010','CC004','Chi Nhánh số 10','Phủ Lý - Hà Nam')
+('HD01','NV001',3,105000,'2022-02-12'),
+('HD02','NV002',1,200000,'2022-02-12'),
+('HD03','NV002',1,300000,'2022-02-12'),
+('HD04','NV003',1,20000,'2022-02-12'),
+('HD05','NV004',2,590000,'2022-02-12'),
+('HD06','NV005',1,20000,'2022-02-12'),
+('HD07','NV005',1,30000,'2022-02-12')
 GO
 INSERT INTO dbo.SanPham
 (
@@ -108,43 +97,6 @@ VALUES
 ('GD008', 'HD05', N'Nồi chiên không dầu', 500000 , N'Panasonic'),
 ('TD009', 'HD06', N'Xì dầu', 20000 , 'Vinacol'),
 ('TD010', 'HD07', N'Nước lau nhà', 30000 , 'Sunlight')
-GO
-INSERT INTO dbo.HoaDon
-(
-    id_hd,
-	id_nv,
-	tong_sp,
-    tong_tien,
-	ngay
-)
-VALUES
-('HD01','NV001',3,105000,'2022-02-12'),
-('HD02','NV002',1,200000,'2022-02-12'),
-('HD03','NV002',1,300000,'2022-02-12'),
-('HD04','NV003',1,20000,'2022-02-12'),
-('HD05','NV004',2,590000,'2022-02-12'),
-('HD06','NV005',1,20000,'2022-02-12'),
-('HD07','NV005',1,30000,'2022-02-12')
-GO
-INSERT INTO dbo.NhapHang
-(
-    id_nhap,
-    id_cn,
-	id_sp,
-	id_nv,
-    so_luong
-)
-VALUES
-('NH001','CN001','TD001','NV001','100'),
-('NH002','CN002','TD002','NV002','90'),
-('NH003','CN003','GD003','NV003','66'),
-('NH004','CN004','TD004','NV004','78'),
-('NH005','CN005','TD006','NV005','125'),
-('NH006','CN006','GD005','NV006','15'),
-('NH007','CN007','GD007','NV007','70'),
-('NH008','CN008','TD009','NV008','95'),
-('NH009','CN009','GD008','NV009','65'),
-('NH010','CN010','TD010','NV010','25')
 GO
 INSERT INTO dbo.HangTieuDung
 VALUES
@@ -174,4 +126,52 @@ VALUES
 ('KH08','GD005',1),
 ('KH09','GD007',1),
 ('KH09','GD008',1)
+GO
+INSERT INTO dbo.NhaCC
+VALUES
+('CC001',N'Công Ty TNHH Hà Long',N'Thanh Xuân - Hà Đông'),
+('CC002',N'Công Ty TNHH Hoàng Minh',N'Dương Nội - Hà Đông'),
+('CC003',N'Công Ty Kinh Doanh Việt Dương',N'Hoàng Mai - Hà Nội'),
+('CC004',N'Công Ty SX Thiên Long',N'Phủ Lý - Hà Nam'),
+('CC005',N'Công Ty TNHH Long Thành',N'Hai Bà Trưng - Hà Nội'),
+('CC006',N'Công Ty TNHH Bắc Việt',N'Cầu Giấy - Hà Nội'),
+('CC007',N'Công Ty Thực Phẩm Hương Ly',N' Từ Liêm - Hà Nội'),
+('CC008',N'Công Ty Thực Phẩm CP',N'Hoài Đức - Hà Nội'),
+('CC009',N'Công Ty TNHH Việt Đức',N'Thanh Xuân- Hà Đông'),
+('CC010',N'Công Ty TNHH Quang Long',N'Kiến An - Hải Phòng')
+GO
+
+
+INSERT INTO dbo.ChiNhanh
+VALUES
+('CN001','CC001',N'Chi Nhánh số 1',N'Thanh Xuân - Hà Đông'),
+('CN002','CC001',N'Chi Nhánh số 2',N'Yên Xá - Hà Đông'),
+('CN003','CC003',N'Chi Nhánh số 3',N'Hoàng Mai - Hà Nội'),
+('CN004','CC002',N'Chi Nhánh số 4',N'Dương Nội - Hà Đông'),
+('CN005','CC005',N'Chi Nhánh số 5',N'Hai Bà Trưng - Hà Nội'),
+('CN006','CC008',N'Chi Nhánh số 6',N'Dương Nội - Hà Đông'),
+('CN007','CC010',N'Chi Nhánh số 7',N'Kiến An - Hải Phòng'),
+('CN008','CC009',N'Chi Nhánh số 8',N'Thanh Xuân - Hà Đông'),
+('CN009','CC006',N'Chi Nhánh số 9',N'Cầu Giấy - Hà Nội'),
+('CN010','CC004',N'Chi Nhánh số 10',N'Phủ Lý - Hà Nam')
+GO
+INSERT INTO dbo.NhapHang
+(
+    id_nhap,
+    id_cn,
+	id_sp,
+	id_nv,
+    so_luong
+)
+VALUES
+('NH001','CN001','TD001','NV001','100'),
+('NH002','CN002','TD002','NV002','90'),
+('NH003','CN003','GD003','NV003','66'),
+('NH004','CN004','TD004','NV004','78'),
+('NH005','CN005','TD006','NV005','125'),
+('NH006','CN006','GD005','NV006','15'),
+('NH007','CN007','GD007','NV007','70'),
+('NH008','CN008','TD009','NV008','95'),
+('NH009','CN009','GD008','NV009','65'),
+('NH010','CN010','TD010','NV010','25')
 GO
