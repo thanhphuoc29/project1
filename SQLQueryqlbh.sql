@@ -3,7 +3,8 @@ GO
 
 USE QuanLyBanHang
 GO
-
+CREATE DATABASE test2
+USE test2
 CREATE TABLE KhachHang(
 	id_KH CHAR(10) PRIMARY KEY,
 	ten nvarchar(50),
@@ -53,13 +54,13 @@ CREATE TABLE SanPham(
 )
 GO
 CREATE TABLE HangTieuDung(
-	id_sp_Hangtd CHAR(10) REFERENCES dbo.SanPham(id_sp),
+	id_sp_Hangtd CHAR(10) REFERENCES dbo.SanPham(id_sp) UNIQUE,
 	loai NVARCHAR(50),
 	hsd DATE
 )
 GO
 CREATE TABLE DoGiaDung(
-	id_sp_DoGd CHAR(10) REFERENCES dbo.SanPham(id_sp),
+	id_sp_DoGd CHAR(10) REFERENCES dbo.SanPham(id_sp) UNIQUE,
 	loai NVARCHAR(50)
 
 )
