@@ -1,6 +1,5 @@
 USE QuanLyBanHang
 GO
-USE test2
 --them du lieu
 INSERT INTO dbo.KhachHang
 VALUES
