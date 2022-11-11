@@ -1,6 +1,6 @@
 USE QuanLyBanHang
 GO
-
+USE test2
 --them du lieu
 INSERT INTO dbo.KhachHang
 VALUES
@@ -72,11 +72,11 @@ INSERT INTO dbo.HoaDon
 VALUES
 ('HD01','NV001',3,105000,'2022-02-12'),
 ('HD02','NV002',1,200000,'2022-02-12'),
-('HD03','NV002',1,300000,'2022-02-12'),
-('HD04','NV003',1,20000,'2022-02-12'),
-('HD05','NV004',2,590000,'2022-02-12'),
-('HD06','NV005',1,20000,'2022-02-12'),
-('HD07','NV005',1,30000,'2022-02-12')
+('HD03','NV002',1,300000,'2022-02-13'),
+('HD04','NV005',1,20000,'2022-02-13'),
+('HD05','NV006',2,590000,'2022-02-14'),
+('HD06','NV005',1,20000,'2022-02-14'),
+('HD07','NV007',1,30000,'2022-02-15')
 GO
 INSERT INTO dbo.SanPham
 (
@@ -140,8 +140,6 @@ VALUES
 ('CC009',N'Công Ty TNHH Việt Đức',N'Thanh Xuân- Hà Đông'),
 ('CC010',N'Công Ty TNHH Quang Long',N'Kiến An - Hải Phòng')
 GO
-
-
 INSERT INTO dbo.ChiNhanh
 VALUES
 ('CN001','CC001',N'Chi Nhánh số 1',N'Thanh Xuân - Hà Đông'),
