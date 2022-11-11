@@ -6,3 +6,5 @@ Insert data:
 https://docs.google.com/document/d/1R7wHR8rEJfBdGUmyofEHMSl7nk1TlCys/edit?usp=sharing&ouid=108790848203509949942&rtpof=true&sd=true
 write a report:
 https://docs.google.com/document/d/1UZnWPZ8xuGX_uoUYSlWSXkI_AQ1PM7VW/edit?usp=sharing&ouid=108790848203509949942&rtpof=true&sd=true
+references:
+https://www.slideshare.net/PhcHo/bai-tap-va-loi-giai-sql
