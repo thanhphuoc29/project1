@@ -3,8 +3,6 @@ GO
 
 USE QuanLyBanHang
 GO
-CREATE DATABASE test2
-USE test2
 CREATE TABLE KhachHang(
 	id_KH CHAR(10) PRIMARY KEY,
 	ten nvarchar(50),
