@@ -1,0 +1,123 @@
+create database DKTC
+go
+use DKTC
+go
+
+create table ChiNhanh(
+	id_cn char(10) primary key,
+	name nvarchar(50),
+)
+
+go
+create table SinhVien(
+	id_sv char(10) primary key,
+	name nvarchar(50),
+	dob date,
+	id_cn char(10) references ChiNhanh(id_cn),
+)
+go 
+create table MonHoc(
+	id_mh char(10) primary key,
+	name nvarchar(50),
+	soTc int
+)
+go
+create table DangKy(
+	id_sv char(10) references SinhVien(id_sv),
+	id_mh char(10) references MonHoc(id_mh),
+	lan int,
+	name_teacher nvarchar(50)
+)
+
+----------------------------------------------INSERT DATA--------------------------------------------
+insert into ChiNhanh
+values
+('CN01',N'Mỗ Lao - Hà Đông'),
+('CN02',N'Cầu Giấy')
+go
+insert into SinhVien
+values
+('SV01',N'Nguyễn Văn An','2002-02-12','CN01'),
+('SV02',N'Nguyễn Trần Long','2002-07-05','CN01'),
+('SV03',N'Lê Trung Kiên','2002-10-09','CN02'),
+('SV04',N'Trần thị Vân Anh','2002-08-03','CN02'),
+('SV05',N'Nguyễn Đăng Long','2002-12-20','CN01')
+go
+insert into MonHoc
+values
+('MH01',N'CSDL',3),
+('MH02',N'CTDL & GT',3),
+('MH03',N'Lập trình hướng đối tượng',3),
+('MH04',N'Lập trình python',3),
+('MH05',N'Lịch sử đảng',2)
+go
+insert into DangKy
+values
+('SV01','MH01',1,N'Trần Quỳnh Lan'),
+('SV01','MH02',1,N'Nguyễn Đức Trung'),
+('SV02','MH03',1,N'Trần Thúy Diệp'),
+('SV02','MH04',1,N'Nguyễn Văn Phong'),
+('SV03','MH05',1,N'Đinh Mạnh Ninh'),
+('SV03','MH01',1,N'Lê Đức Anh'),
+('SV04','MH02',1,N'Nguyễn Trung Kiên'),
+('SV05','MH03',1,N'Đào Mạnh Đức')
+
+-----------------------------------QUERY---------------------------------------------
+-- Cau 1: Liet ke ra moi dang ky cua sinh vien
+select SinhVien.id_sv,SinhVien.name,DangKy.id_mh,MonHoc.name,DangKy.name_teacher
+from SinhVien
+left join DangKy on DangKy.id_sv=SinhVien.id_sv
+join MonHoc on MonHoc.id_mh=DangKy.id_mh
+
+-- Cau 2: Liet ke ra danh sach sinh vien da dang ky
+select distinct SinhVien.id_sv,SinhVien.name
+from SinhVien,DangKy
+where SinhVien.id_sv=DangKy.id_sv
+
+-- Cau 3: Liet ke ra nhung sinh vien khong dang ky
+select SinhVien.id_sv,SinhVien.name
+from SinhVien
+left join DangKy on SinhVien.id_sv=DangKy.id_sv
+where DangKy.id_sv is null
+
+-- Cau 4: Liet ke nhung ID sinh vien chi dang ky mon 01
+select SinhVien.id_sv
+from SinhVien,DangKy
+where SinhVien.id_sv=DangKy.id_sv and DangKy.id_mh='MH01'
+
+-- Cau 5: Liet ke nhung sinh vien chi dang ky mon 01
+select A.id_sv,A.name
+from(
+	select SinhVien.id_sv,SinhVien.name,count(DangKy.id_sv) as [Số môn]
+	from SinhVien
+	join DangKy on DangKy.id_sv=SinhVien.id_sv
+	group by SinhVien.id_sv,SinhVien.name) as A,DangKy
+	where A.id_sv=DangKy.id_sv and A.[Số môn]=1 and DangKy.id_mh='MH01'
+
+-- Cau 6: Thong ke so lan moi mon hoc duoc dang ky
+select dk.id_mh,MonHoc.name,count(dk.id_mh) as [Số lần]
+from DangKy as dk
+join MonHoc on dk.id_mh=MonHoc.id_mh
+group by dk.id_mh,MonHoc.name
+
+-- Cau 7: Thong ke sinh vien dang ky mon hoc cung so lan dang ky
+select SinhVien.id_sv,SinhVien.name,DangKy.id_mh,DangKy.lan
+from SinhVien
+join DangKy on SinhVien.id_sv=DangKy.id_sv
+
+-- Cau 8: Thong ke nhung sinh vien chi dang ky 1 mon
+select SinhVien.id_sv,SinhVien.name,count(DangKy.id_sv) as [Số môn]
+from SinhVien
+join DangKy on DangKy.id_sv=SinhVien.id_sv
+group by SinhVien.id_sv,SinhVien.name
+having count(DangKy.id_sv)=1
+
+-- Cau 9: Sua ten SV thanh chu hoa
+update SinhVien
+set name=UPPER(name)
+-- Cau 10: them mot thuoc tinh vao bang SinhVien
+alter table SinhVien
+add GT nvarchar(10)
+-- sua thanh char
+alter table SinhVien
+alter column GT char(10)
